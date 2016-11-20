@@ -19,7 +19,7 @@ class SignupAdmin extends Component {
   }
 
   handleFormSubmit(formProps) {
-    this.props.signupUser(formProps);
+    this.props.signupAdmin(formProps);
   }
 
   render() {
@@ -39,7 +39,7 @@ class SignupAdmin extends Component {
           {/* Email */}
           <Field name="email" component={renderField} type="text" placeholder="Email" />
 
-          {/* Email */}
+          {/* school */}
           <Field name="school" component={renderField} type="text" placeholder="school" />
 
           {/* Password */}
@@ -69,6 +69,7 @@ class SignupAdmin extends Component {
 }
 
 const validate = props => {
+  console.log(props)
   const errors = {};
   const fields = ['firstname', 'lastname', 'email', 'school', 'password', 'repassword'];
 

@@ -8,16 +8,17 @@ import { tokenForUser } from '../helpers/token';
  * Sign in
  */
 export const signin = (req, res) => {
-  const { firstname, lastname, email } = req.user;
+  const { firstname, lastname, email, position } = req.user;
 
-  res.json({ token: tokenForUser(req.user), firstname, lastname, email });
+  res.json({ token: tokenForUser(req.user), firstname, lastname, email, position });
 };
 
 /**
  * Sign up student
  */
 export const signup = (req, res, next) => {
-  const { firstname, lastname, email, password } = req.body;
+  const { firstname, lastname, email, password, school } = req.body;
+  const position = 'student';
 
   if (!firstname || !lastname || !email || !password) {
     return res.status(422).send({ error: "all fields are required" });
@@ -30,7 +31,7 @@ export const signup = (req, res, next) => {
       return res.status(422).send({ error: "Email is in use" });
     }
 
-    const user = new User({ firstname, lastname, email, password });
+    const user = new User({ firstname, lastname, email, password, school, position });
 
     user.save((err) => {
       if (err) { return next(err); }
@@ -44,8 +45,8 @@ export const signup = (req, res, next) => {
 
 /*signup Admin*/
 export const signupAdmin = (req, res, next) => {
-  const { firstname, lastname, email, password } = req.body;
-  const role = 1;
+  const { firstname, lastname, email, password, school } = req.body;
+  const position = 'Admin';
   
   if (!firstname || !lastname || !email || !password) {
     return res.status(422).send({ error: "all fields are required" });
@@ -58,7 +59,7 @@ export const signupAdmin = (req, res, next) => {
       return res.status(422).send({ error: "Email is in use" });
     }
 
-    const user = new User({ firstname, lastname, email, password, role });
+    const user = new User({ firstname, lastname, email, password, position, school });
 
     user.save((err) => {
       if (err) { return next(err); }
