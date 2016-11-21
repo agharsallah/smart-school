@@ -67,10 +67,14 @@ export function signinUser(props) {
         dispatch({ type: AUTH_USER });
 
         /*check if the user is Admin redirect him to admin component else student component*/
+       console.log('auth')
+       console.log(response.data.position)
         if (response.data.position === 'Admin') {
-          browserHistory.push('/reduxauth/AdminUser');
+          /*browserHistory.push('/reduxauth/adminHome');*/
+          window.location.href = "/reduxauth/adminHome";
         }else{
-          browserHistory.push('/reduxauth/users');
+          /*browserHistory.push('/reduxauth/users');*/
+          window.location.href = "/reduxauth/users";
         }
       })
       .catch(() => dispatch(authError(SIGNIN_FAILURE, "Email or password isn't right")));

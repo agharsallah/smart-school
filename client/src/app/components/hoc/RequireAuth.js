@@ -10,11 +10,11 @@ export default function (ComposedComponent) {
       }
     }
 
-    componentWillUpdate(nextProps) {
+/*    componentWillUpdate(nextProps) {
       if (!nextProps.authenticated) {
         browserHistory.push('/reduxauth/signup');
       }
-    }
+    }*/
 
     render() {
       return <ComposedComponent {...this.props} />

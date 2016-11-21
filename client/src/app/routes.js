@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Route, IndexRoute, Router, browserHistory } from 'react-router';
 
 import App from './components/App';
 import UserList from './components/users/UserList';
@@ -13,13 +13,14 @@ import SignupVerify from './components/auth/SignupVerify';
 import ResetPassword from './components/resetPassword/ResetPassword';
 import ResetPasswordVerify from './components/resetPassword/ResetPasswordVerify';
 import ResetPasswordNew from './components/resetPassword/ResetPasswordNew';
+import ManageClass from './components/users/admin/ManageClass';
 
 import requireAuth from './components/hoc/RequireAuth';
 import requireNotAuth from './components/hoc/RequireNotAuth';
 import requireAdminAuth from './components/hoc/RequireAdminAuth';
 
 export default (
-  <Route path="/reduxauth" component={App}>
+  <Router path="/reduxauth" history={ browserHistory } component={App} >
     <IndexRoute component={requireNotAuth(Signup)} />
     <Route path="signin" component={requireNotAuth(Signin)} />
     <Route path="signup" component={requireNotAuth(Signup)} />
@@ -31,6 +32,7 @@ export default (
     <Route path="reset-password/verify" component={ResetPasswordVerify} />
     <Route path="reset-password/new" component={requireNotAuth(ResetPasswordNew)} />
     <Route path="users" component={requireAuth(UserList)} />
-    <Route path="AdminUser" component={requireAdminAuth(AdminHome)} />
-  </Route>
+    <Route path="adminHome" component={requireAdminAuth(AdminHome)} />
+    <Route path="manageClass" component={requireAdminAuth(ManageClass)} />
+  </Router>
 )

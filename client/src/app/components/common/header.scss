@@ -8,6 +8,9 @@ header {
     color: $blue;
     margin-left: 20px;
   }
+  .active {
+  color: $green;
+  }
 
   nav {
     float: right;

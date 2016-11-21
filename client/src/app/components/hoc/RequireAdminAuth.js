@@ -8,15 +8,15 @@ export default function (ComposedComponent) {
       /*we check here that if user is not auth or is not admin he will be redirected*/
       this.user = JSON.parse(localStorage.getItem('user'));
       if (!this.props.authenticated || this.user.position !== "Admin") {
-        browserHistory.push('/reduxauth/signup');
+        browserHistory.push('/reduxauth/signupAdmin');
       }
     }
 
-    componentWillUpdate(nextProps) {
+/*    componentWillUpdate(nextProps) {
       if (!nextProps.authenticated) {
-        browserHistory.push('/reduxauth/signup');
+        browserHistory.push('/reduxauth/signupAdmin');
       }
-    }
+    }*/
 
     render() {
       return <ComposedComponent {...this.props} />
